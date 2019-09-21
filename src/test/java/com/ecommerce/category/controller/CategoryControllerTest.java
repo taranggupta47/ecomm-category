@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Test cases for Category controller
+ * Test cases for Category controller APIs
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(CategoryController.class)
