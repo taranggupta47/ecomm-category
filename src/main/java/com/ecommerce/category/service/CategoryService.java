@@ -15,4 +15,16 @@ public class CategoryService {
 	public Iterable<Category> getAllCategories() {
 		return null;
 	}
+
+	public Category getCategoryById(int id) {
+		return null;
+	}
+
+	public Category getCategoryByName(String name) {
+		return null;
+	}
+
+	public Category addCategory(Category cat) {
+		return null;
+	}
 }
