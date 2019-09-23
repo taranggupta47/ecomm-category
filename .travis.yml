@@ -1,6 +1,3 @@
-env:
-  global:
-    - CODECOV_TOKEN=:"fb7bd8b6-5d00-4aca-b455-c6c47665564c"
 language: java
 jdk: oraclejdk8
 dist: trusty
