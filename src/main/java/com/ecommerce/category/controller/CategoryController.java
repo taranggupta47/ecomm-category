@@ -6,9 +6,6 @@
  */
 package com.ecommerce.category.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.ecommerce.category.model.Category;
 import com.ecommerce.category.service.CategoryService;
 import com.ecommerce.category.util.CategoryAlreadyExistsException;
@@ -59,7 +56,7 @@ public class CategoryController {
 	 * @throws Exception of type {@link CategoryNotFoundException}
 	 */
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Category> getCategoryById(@PathVariable int id) throws Exception {
+	public ResponseEntity<Category> getCategoryById(@PathVariable int id) throws CategoryNotFoundException {
 		return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
 	}
 
@@ -70,7 +67,7 @@ public class CategoryController {
 	 * @throws Exception of type {@link CategoryNotFoundException}
 	 */
 	@GetMapping()
-	public ResponseEntity<Category> getCategoryByName(@RequestParam("name") String name) throws Exception {
+	public ResponseEntity<Category> getCategoryByName(@RequestParam("name") String name) throws CategoryNotFoundException {
 		return new ResponseEntity<>(categoryService.getCategoryByName(name), HttpStatus.OK);
 	}
 
@@ -81,23 +78,27 @@ public class CategoryController {
 	 * @throws Exception of type {@link CategoryAlreadyExistsException}
 	 */
 	@PostMapping()
-	public ResponseEntity<Category> addCategory(@RequestBody Category category) throws Exception {
+	public ResponseEntity<Category> addCategory(@RequestBody Category category) throws CategoryAlreadyExistsException {
 		return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.CREATED);
 	}
 
 	/**
 	 * Exception handler when user is not found
-	 * @param e
+	 * @param e of type {@link CategoryAlreadyExistsException}
 	 */
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public void categoryNotFoundExceptionHandler(CategoryNotFoundException e){}
+	public void categoryNotFoundExceptionHandler(CategoryNotFoundException e){
+		// implementation yet to be completed
+	}
 
 	/**
 	 * Exception handler when user information already exists
-	 * @param e
+	 * @param e of type {@link CategoryAlreadyExistsException}
 	 */
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.CONFLICT)
-	public void categoryAlreadyExistsExceptionHandler(CategoryAlreadyExistsException e){}
+	public void categoryAlreadyExistsExceptionHandler(CategoryAlreadyExistsException e){
+		// implementation yet to be completed
+	}
 }

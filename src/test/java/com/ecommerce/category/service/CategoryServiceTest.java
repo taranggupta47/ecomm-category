@@ -72,15 +72,6 @@ public class CategoryServiceTest {
 		verify(categoryRepository).findCategoriesByName("Laptops");
 	}
 
-//	@Test
-//	public void addCategory_willReturnAddedCategory() throws Exception {
-//		given(categoryRepository.save(new Category(1, "Laptops")))
-//				.willReturn(new Category(1, "Laptops"));
-//		Category actual = categoryService.addCategory(new Category(1, "Laptops"));
-//		assertThat(actual.getName()).isEqualTo("Laptops");
-//		verify(categoryRepository).save(new Category(1, "Laptops"));
-//	}
-
 	@Test(expected = CategoryAlreadyExistsException.class)
 	public void addCategory_willThrowAlreadyExists() throws Exception {
 		given(categoryRepository.findCategoriesByName("Laptops"))

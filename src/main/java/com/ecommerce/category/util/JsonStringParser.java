@@ -14,15 +14,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Json String Parser
  */
 public class JsonStringParser {
+
 	/**
-	 * A static class which will take in an object and return json format of it
-	 * @param obj of any typelike {@link Category}
+	 * private constructor to hide the public constructor.
+	 */
+	private JsonStringParser() {
+		throw new IllegalStateException("Utility Class");
+	}
+
+	/**
+	 * A static method which will take in an object and return json format of it
+	 * @param obj of any type like {@link Category}
 	 * @return a string of JSON type
 	 * @throws JsonProcessingException
 	 */
 	public static String asJsonString(final Object obj) throws JsonProcessingException {
 		final ObjectMapper mapper = new ObjectMapper();
-		final String jsonContent = mapper.writeValueAsString(obj);
-		return jsonContent;
+		return mapper.writeValueAsString(obj);
 	}
 }
