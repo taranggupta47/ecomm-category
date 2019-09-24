@@ -30,9 +30,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Test cases for Category controller APIs
- */
 @RunWith(SpringRunner.class)
 @WebMvcTest(CategoryController.class)
 public class CategoryControllerTest {
@@ -43,11 +40,6 @@ public class CategoryControllerTest {
 	@MockBean
 	private CategoryService categoryService;
 
-	/**
-	 * If the {@link CategoryService} return an empty list on getAllCategories()
-	 * Then check if the status is OK(200)
-	 * @throws Exception
-	 */
 	@Test
 	public void getAllCategories_willReturnCategories() throws Exception {
 		given(categoryService.getAllCategories()).willReturn(Collections.emptyList());

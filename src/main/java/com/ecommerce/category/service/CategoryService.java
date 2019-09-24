@@ -24,7 +24,7 @@ public class CategoryService {
 
 	/**
 	 * Constructor Dependency injection of {@link CategoryRepository}
-	 * @param categoryRepository
+	 * @param categoryRepository repository bean
 	 */
 	public CategoryService(CategoryRepository categoryRepository) {
 		this.categoryRepository = categoryRepository;
@@ -42,7 +42,7 @@ public class CategoryService {
 	 * Get category by id
 	 * @param id of type {@link Integer}
 	 * @return of type {@link Category}
-	 * @throws CategoryNotFoundException
+	 * @throws CategoryNotFoundException when no category found
 	 */
 	public Category getCategoryById(int id) {
 		Optional<Category> category = categoryRepository.findById(id);
@@ -54,7 +54,7 @@ public class CategoryService {
 	 * Get category by name
 	 * @param name of type {@link String}
 	 * @return of type {@link Category}
-	 * @throws CategoryNotFoundException
+	 * @throws CategoryNotFoundException when no category is found
 	 */
 	public Category getCategoryByName(String name) {
 		Optional<Category> category = categoryRepository.findCategoriesByName(name);
@@ -66,7 +66,7 @@ public class CategoryService {
 	 * Add a new category to the database
 	 * @param cat of type {@link Category}
 	 * @return newly added category of type {@link Category}
-	 * @throws CategoryAlreadyExistsException
+	 * @throws CategoryAlreadyExistsException when there exits a category of that name
 	 */
 	public Category addCategory(Category cat) {
 		Optional<Category> category = categoryRepository.findCategoriesByName(cat.getName());

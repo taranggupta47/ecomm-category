@@ -19,14 +19,14 @@ public class JsonStringParser {
 	 * private constructor to hide the public constructor.
 	 */
 	private JsonStringParser() {
-		throw new IllegalStateException("Utility Class");
+		// Intentionally empty
 	}
 
 	/**
 	 * A static method which will take in an object and return json format of it
 	 * @param obj of any type like {@link Category}
 	 * @return a string of JSON type
-	 * @throws JsonProcessingException
+	 * @throws JsonProcessingException when json cannot be processed
 	 */
 	public static String asJsonString(final Object obj) throws JsonProcessingException {
 		final ObjectMapper mapper = new ObjectMapper();

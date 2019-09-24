@@ -53,10 +53,10 @@ public class CategoryController {
 	 * Get a category information by its Id
 	 * @param id existing id of a category
 	 * @return the result of type {@link Category}
-	 * @throws Exception of type {@link CategoryNotFoundException}
+	 * @throws CategoryNotFoundException when category not found
 	 */
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Category> getCategoryById(@PathVariable int id) throws CategoryNotFoundException {
+	public ResponseEntity<Category> getCategoryById(@PathVariable int id) {
 		return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
 	}
 
@@ -64,10 +64,10 @@ public class CategoryController {
 	 * Get a category by its name
 	 * @param name existing name of a category
 	 * @return the result of type {@link Category}
-	 * @throws Exception of type {@link CategoryNotFoundException}
+	 * @throws CategoryNotFoundException when category not found
 	 */
 	@GetMapping()
-	public ResponseEntity<Category> getCategoryByName(@RequestParam("name") String name) throws CategoryNotFoundException {
+	public ResponseEntity<Category> getCategoryByName(@RequestParam("name") String name) {
 		return new ResponseEntity<>(categoryService.getCategoryByName(name), HttpStatus.OK);
 	}
 
@@ -75,10 +75,10 @@ public class CategoryController {
 	 * Add a new category
 	 * @param category of type {@link Category}
 	 * @return the newly added category of type {@link Category}
-	 * @throws Exception of type {@link CategoryAlreadyExistsException}
+	 * @throws CategoryAlreadyExistsException when there is already a category of that particular name
 	 */
 	@PostMapping()
-	public ResponseEntity<Category> addCategory(@RequestBody Category category) throws CategoryAlreadyExistsException {
+	public ResponseEntity<Category> addCategory(@RequestBody Category category) {
 		return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.CREATED);
 	}
 
