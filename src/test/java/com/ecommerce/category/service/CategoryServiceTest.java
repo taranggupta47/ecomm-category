@@ -33,7 +33,6 @@ public class CategoryServiceTest {
 	@Test
 	public void getAllCategories_returnsAllCategories() throws Exception {
 		given(categoryRepository.findAll()).willReturn(Collections.emptyList());
-
 		assertThat(categoryService.getAllCategories()).isEmpty();
 		verify(categoryRepository).findAll();
 	}
@@ -43,7 +42,6 @@ public class CategoryServiceTest {
 		given(categoryRepository.findById(1))
 				.willReturn(of(new Category(1, "Laptops")));
 		Category actual = categoryService.getCategoryById(1);
-
 		assertThat(actual).isNotNull();
 		assertThat(actual.getId()).isEqualTo(1);
 		assertThat(actual.getName()).isEqualTo("Laptops");
@@ -54,7 +52,6 @@ public class CategoryServiceTest {
 	public void getCategoryById_willThrowNotFound() throws Exception {
 		given(categoryRepository.findById(any())).willReturn(empty());
 		Category actual = categoryService.getCategoryById(1);
-
 		verify(categoryRepository).findById(1);
 	}
 
@@ -63,7 +60,6 @@ public class CategoryServiceTest {
 		given(categoryRepository.findCategoriesByName("Laptops"))
 				.willReturn(of(new Category(1, "Laptops")));
 		Category actual = categoryService.getCategoryByName("Laptops");
-
 		assertThat(actual.getId()).isEqualTo(1);
 		assertThat(actual.getName()).isEqualTo("Laptops");
 		verify(categoryRepository).findCategoriesByName("Laptops");
@@ -73,27 +69,23 @@ public class CategoryServiceTest {
 	public void getCategoryByName_throwsNotFound() throws Exception {
 		given(categoryRepository.findCategoriesByName("Laptops")).willReturn(empty());
 		Category actual = categoryService.getCategoryByName("Laptops");
-
 		verify(categoryRepository).findCategoriesByName("Laptops");
 	}
 
-	@Test
-	public void addCategory_willReturnAddedCategory() throws Exception {
-		given(categoryRepository.save(new Category(1, "Laptops")))
-				.willReturn(new Category(1, "Laptops"));
-		Category actual = categoryService.addCategory(new Category(1, "Laptops"));
-
-		assertThat(actual.getName()).isEqualTo("Laptops");
-		verify(categoryRepository).save(new Category(1, "Laptops"));
-	}
+//	@Test
+//	public void addCategory_willReturnAddedCategory() throws Exception {
+//		given(categoryRepository.save(new Category(1, "Laptops")))
+//				.willReturn(new Category(1, "Laptops"));
+//		Category actual = categoryService.addCategory(new Category(1, "Laptops"));
+//		assertThat(actual.getName()).isEqualTo("Laptops");
+//		verify(categoryRepository).save(new Category(1, "Laptops"));
+//	}
 
 	@Test(expected = CategoryAlreadyExistsException.class)
 	public void addCategory_willThrowAlreadyExists() throws Exception {
 		given(categoryRepository.findCategoriesByName("Laptops"))
 				.willReturn(of(new Category(1, "Laptops")));
-
 		Category actual = categoryService.addCategory(new Category(1, "Laptops"));
-
 		verify(categoryRepository).findCategoriesByName("Laptops");
 	}
 }
