@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Category entity mapper POJO to map category table from database to this application
+ */
 @Entity
 public class Category {
 	@Id
@@ -18,13 +21,25 @@ public class Category {
 	private int id;
 	private String name;
 
+	/**
+	 * Empty constructor for hibernate
+	 */
 	public Category() {
 	}
 
+	/**
+	 * Contructor to build object of {@link Category}
+	 * @param name of type {@link String}
+	 */
 	public Category(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Constructor for testing purpose
+	 * @param id of type {@link Integer}
+	 * @param name of type {@link String}
+	 */
 	public Category(int id, String name) {
 		this.id = id;
 		this.name = name;

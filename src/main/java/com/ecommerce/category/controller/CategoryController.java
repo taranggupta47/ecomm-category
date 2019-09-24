@@ -6,9 +6,6 @@
  */
 package com.ecommerce.category.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.ecommerce.category.model.Category;
 import com.ecommerce.category.service.CategoryService;
 import com.ecommerce.category.util.CategoryAlreadyExistsException;
@@ -56,10 +53,10 @@ public class CategoryController {
 	 * Get a category information by its Id
 	 * @param id existing id of a category
 	 * @return the result of type {@link Category}
-	 * @throws Exception of type {@link CategoryNotFoundException}
+	 * @throws CategoryNotFoundException when category not found
 	 */
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Category> getCategoryById(@PathVariable int id) throws Exception {
+	public ResponseEntity<Category> getCategoryById(@PathVariable int id) {
 		return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
 	}
 
@@ -67,10 +64,10 @@ public class CategoryController {
 	 * Get a category by its name
 	 * @param name existing name of a category
 	 * @return the result of type {@link Category}
-	 * @throws Exception of type {@link CategoryNotFoundException}
+	 * @throws CategoryNotFoundException when category not found
 	 */
 	@GetMapping()
-	public ResponseEntity<Category> getCategoryByName(@RequestParam("name") String name) throws Exception {
+	public ResponseEntity<Category> getCategoryByName(@RequestParam("name") String name) {
 		return new ResponseEntity<>(categoryService.getCategoryByName(name), HttpStatus.OK);
 	}
 
@@ -78,26 +75,30 @@ public class CategoryController {
 	 * Add a new category
 	 * @param category of type {@link Category}
 	 * @return the newly added category of type {@link Category}
-	 * @throws Exception of type {@link CategoryAlreadyExistsException}
+	 * @throws CategoryAlreadyExistsException when there is already a category of that particular name
 	 */
 	@PostMapping()
-	public ResponseEntity<Category> addCategory(@RequestBody Category category) throws Exception {
+	public ResponseEntity<Category> addCategory(@RequestBody Category category) {
 		return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.CREATED);
 	}
 
 	/**
 	 * Exception handler when user is not found
-	 * @param e
+	 * @param e of type {@link CategoryAlreadyExistsException}
 	 */
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public void categoryNotFoundExceptionHandler(CategoryNotFoundException e){}
+	public void categoryNotFoundExceptionHandler(CategoryNotFoundException e){
+		// implementation yet to be completed
+	}
 
 	/**
 	 * Exception handler when user information already exists
-	 * @param e
+	 * @param e of type {@link CategoryAlreadyExistsException}
 	 */
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.CONFLICT)
-	public void categoryAlreadyExistsExceptionHandler(CategoryAlreadyExistsException e){}
+	public void categoryAlreadyExistsExceptionHandler(CategoryAlreadyExistsException e){
+		// implementation yet to be completed
+	}
 }
