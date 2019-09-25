@@ -3,12 +3,12 @@ package com.ecommerce.category;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+
 
 /**
  * The main category application bootstrap class
  */
-@EnableZuulProxy
+
 @EnableEurekaClient
 @SpringBootApplication
 public class CategoryApplication {
