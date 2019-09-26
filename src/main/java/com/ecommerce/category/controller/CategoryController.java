@@ -7,10 +7,12 @@
 package com.ecommerce.category.controller;
 
 import com.ecommerce.category.model.Category;
+import com.ecommerce.category.model.CategoryDTO;
 import com.ecommerce.category.service.CategoryService;
 import com.ecommerce.category.util.CategoryAlreadyExistsException;
 import com.ecommerce.category.util.CategoryNotFoundException;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
 
 	private CategoryService categoryService;
+	private ModelMapper modelMapper;
 
 	/**
 	 * Constructor dependency injection of Category Service
@@ -38,6 +41,7 @@ public class CategoryController {
 	 */
 	public CategoryController(CategoryService categoryService) {
 		this.categoryService = categoryService;
+		this.modelMapper = new ModelMapper();
 	}
 
 	/**
@@ -78,8 +82,8 @@ public class CategoryController {
 	 * @throws CategoryAlreadyExistsException when there is already a category of that particular name
 	 */
 	@PostMapping()
-	public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-		return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.CREATED);
+	public ResponseEntity<Category> addCategory(@RequestBody CategoryDTO category) {
+		return new ResponseEntity<>(categoryService.addCategory(modelMapper.map(category, Category.class)), HttpStatus.CREATED);
 	}
 
 	/**

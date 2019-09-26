@@ -2,6 +2,7 @@ package com.ecommerce.category.service;
 
 import java.util.Collections;
 import com.ecommerce.category.model.Category;
+import com.ecommerce.category.model.CategoryDTO;
 import com.ecommerce.category.repository.CategoryRepository;
 import com.ecommerce.category.util.CategoryAlreadyExistsException;
 import com.ecommerce.category.util.CategoryNotFoundException;
@@ -10,6 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.modelmapper.ModelMapper;
+
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.assertj.core.api.Assertions.assertThat;

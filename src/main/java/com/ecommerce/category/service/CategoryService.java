@@ -8,10 +8,12 @@ package com.ecommerce.category.service;
 import java.util.Optional;
 
 import com.ecommerce.category.model.Category;
+import com.ecommerce.category.model.CategoryDTO;
 import com.ecommerce.category.repository.CategoryRepository;
 import com.ecommerce.category.util.CategoryAlreadyExistsException;
 import com.ecommerce.category.util.CategoryNotFoundException;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 /**

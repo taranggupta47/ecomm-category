@@ -9,12 +9,15 @@ package com.ecommerce.category.controller;
 import java.util.Collections;
 
 import com.ecommerce.category.model.Category;
+import com.ecommerce.category.model.CategoryDTO;
 import com.ecommerce.category.service.CategoryService;
 import com.ecommerce.category.util.CategoryAlreadyExistsException;
 import com.ecommerce.category.util.CategoryNotFoundException;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -39,6 +42,13 @@ public class CategoryControllerTest {
 
 	@MockBean
 	private CategoryService categoryService;
+
+	private ModelMapper modelMapper;
+
+	@Before
+	public void setUp() {
+		modelMapper = new ModelMapper();
+	}
 
 	@Test
 	public void getAllCategories_willReturnCategories() throws Exception {
@@ -89,7 +99,7 @@ public class CategoryControllerTest {
 
 	@Test
 	public void addCategory_willReturnNewlyAddedCategory() throws Exception {
-		given(categoryService.addCategory(new Category("Laptops")))
+		given(categoryService.addCategory(new Category(1, "Laptops")))
 				.willReturn(new Category("Laptops"));
 
 		mockMvc.perform(post("/categories")
