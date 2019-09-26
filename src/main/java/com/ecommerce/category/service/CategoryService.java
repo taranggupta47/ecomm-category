@@ -44,7 +44,7 @@ public class CategoryService {
 	 * @return of type {@link Category}
 	 * @throws CategoryNotFoundException when no category found
 	 */
-	public Category getCategoryById(int id) {
+	public Category getCategoryById(long id) {
 		Optional<Category> category = categoryRepository.findById(id);
 		if(!category.isPresent()) throw new CategoryNotFoundException();
 		return category.get();

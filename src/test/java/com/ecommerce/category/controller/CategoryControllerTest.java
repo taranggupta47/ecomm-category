@@ -54,17 +54,17 @@ public class CategoryControllerTest {
 		given(categoryService.getCategoryById(1))
 				.willReturn(new Category("Laptops"));
 
-		mockMvc.perform(get("/categories/{id}", 1))
+		mockMvc.perform(get("/categories/{id}", 1l))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$").isNotEmpty());
 	}
 
 	@Test
 	public void getCategoryById_willThrowNotFound() throws Exception {
-		given(categoryService.getCategoryById(1))
+		given(categoryService.getCategoryById(1l))
 				.willThrow(CategoryNotFoundException.class);
 
-		mockMvc.perform(get("/categories/{id}", 1))
+		mockMvc.perform(get("/categories/{id}", 1l))
 				.andExpect(status().isNotFound());
 	}
 

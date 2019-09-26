@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	private String name;
 
 	/**
@@ -40,16 +40,16 @@ public class Category {
 	 * @param id of type {@link Integer}
 	 * @param name of type {@link String}
 	 */
-	public Category(int id, String name) {
+	public Category(long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

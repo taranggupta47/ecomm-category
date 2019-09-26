@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * Category Repository to interact with database of type {@link JpaRepository}
  */
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 	/**
 	 * find category by name
 	 * @param name	of type {@link String}
